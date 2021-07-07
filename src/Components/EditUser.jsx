@@ -1,9 +1,10 @@
 
 import {FormGroup,FormControl,InputLabel,Input,Button,makeStyles,Typography} from '@material-ui/core';
+import { useEffect } from 'react';
 import  { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory,useParams } from 'react-router-dom';
 
-import {adduser} from '../service/api';
+import {editUser, getUsers} from '../service/api';
 
 
 const useStyle=makeStyles({
@@ -32,12 +33,22 @@ const initialvalues={
 
 
 
-const AddUsers = () => {
+const EditUser = () => {
    
     const [user,setuser]=useState(initialvalues);
     const{name,username,email,phone}=user;
 const classes =useStyle();
     const history=useHistory();
+    const {id}=useParams();
+
+    useEffect(() => {
+        loadUserDetails();
+    }, []);
+
+    const loadUserDetails = async() => {
+        const response = await getUsers(id);
+        setuser(response.data);
+    }
 
 const onValueChange=(e)=>{
   
@@ -46,8 +57,8 @@ const onValueChange=(e)=>{
 
 }
 
-        const addUserDetails= async ()=>{
-            await adduser(user);
+        const editUserDetails= async ()=>{
+            await editUser(id,user);
             history.push('./all');
 
         }
@@ -55,7 +66,7 @@ const onValueChange=(e)=>{
    
                 return (
             <FormGroup className={classes.container}>
-                <Typography variant="h4">Add User</Typography>
+                <Typography variant="h4">Edit User</Typography>
                 <FormControl>
                     <InputLabel>
                     Name
@@ -83,7 +94,7 @@ const onValueChange=(e)=>{
                     </InputLabel>
                     <Input onChange={(e)=> onValueChange(e) } name='phone'value={phone} />
                 </FormControl>
-                <Button variant="contained" onClick={()=> addUserDetails()} color="primary">Add User</Button>
+                <Button variant="contained" onClick={()=> editUserDetails()} color="primary">Edit User</Button>
             </FormGroup>
 
 
@@ -91,4 +102,4 @@ const onValueChange=(e)=>{
                 
                     
                 }
-export default AddUsers;
+export default EditUser;

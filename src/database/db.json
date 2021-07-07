@@ -1,14 +1,32 @@
 {
-    "users":[
-
-        {
-            "name":"shihab",
-            "username":"sobur",
-            "email":"shihab@gmail.com",
-            "phone":"01754464716",
-            "id":1
-        }
-    ]
-        
-    
+  "users": [
+    {
+      "name": "shihab",
+      "username": "sobur",
+      "email": "shihab@gmail.com",
+      "phone": "01754464716",
+      "id": 1
+    },
+    {
+      "name": "virat",
+      "username": "kholi",
+      "email": "sharma@gmail.com",
+      "phone": "12334",
+      "id": 2
+    },
+    {
+      "name": "suhel",
+      "username": "roy",
+      "email": "suhel@gmail.com",
+      "phone": "12356",
+      "id": 3
+    },
+    {
+      "name": "mahbub",
+      "username": "faruque",
+      "email": "mahbub@gmail.com",
+      "phone": "1345555",
+      "id": 4
+    }
+  ]
 }
